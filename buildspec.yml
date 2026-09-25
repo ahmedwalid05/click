@@ -6,6 +6,10 @@ phases:
       - python3 -m pip wheel . --no-deps -w dist
       - python3 -m pip install dist/*.whl pytest
       - python3 -m pytest tests --ignore=tests/test_utils/test_echo_via_pager.py --junitxml=junit.xml
+  post_build:
+    commands:
+      - echo "Sleeping for 1 minute"
+      - sleep 1m
 
 reports:
   tests:

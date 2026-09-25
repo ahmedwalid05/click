@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - python3 -m pip wheel . --no-deps -w dist
+      - python3 -m pip install dist/*.whl pytest
+      - python3 -m pytest tests --ignore=tests/test_utils/test_echo_via_pager.py --junitxml=junit.xml
+
+reports:
+  tests:
+    files:
+      - junit.xml
+    file-format: JUNITXML
